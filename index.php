@@ -1,4 +1,7 @@
 <?php
+// Inicia la sesión
+session_start();
+
 // Verifica qué página se está solicitando
 $page = isset($_GET['page']) ? $_GET['page'] : 'inicio';
 ?>
@@ -15,6 +18,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'inicio';
 
 <body>
 
+    <!-- Cabecera con navegación -->
     <header>
         <nav>
             <ul>
@@ -23,35 +27,30 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'inicio';
                 <li><a href="index.php?page=nueva-publicacion">Añadir Publicación</a></li>
                 <li><a href="index.php?page=catalogo-venta">Nuestra Merch</a></li>
                 <li><a href="index.php?page=registro">Registrarse</a></li>
-                <li><a href="index.php?page=registro-moderador">Registro solo Moderador</a></li>
+                <li><a href="index.php?page=registro-moderador">Registro Moderador</a></li>
+                <li><a href="index.php?page=login-moderador">Iniciar Sesión Moderador</a></li>
                 <li><a href="index.php?page=login">Iniciar Sesión</a></li>
                 <li><a href="index.php?page=logout">Cerrar Sesión</a></li>
             </ul>
         </nav>
     </header>
-    <?php
-    session_start(); // Inicia la sesión
-
-    // Verificar si el usuario está logueado
-    if (isset($_SESSION['usuario_nombre'])) {
-        echo "¡Bienvenido @" . $_SESSION['usuario_nombre'] . "!";
-    } else {
-        echo "¡Bienvenido visitante! Inicia sesión o regístrate.";
-    }
-    ?>
 
     <main>
         <?php
-        // Carga el contenido de la página solicitada
+        // Verificar si el usuario está logueado
+        if (isset($_SESSION['usuario_nombre'])) {
+            echo "¡Bienvenido @" . $_SESSION['usuario_nombre'] . "!";
+        } else {
+            echo "¡Bienvenido visitante! Inicia sesión o regístrate.";
+        }
+
+        // Cargar el contenido de la página solicitada
         switch ($page) {
             case 'inicio':
                 include 'inicio.html';
                 break;
             case 'publicaciones':
-                include 'publicaciones.html';
-                break;
-            case 'crear-publicacion':
-                include 'crear-publicacion.php';
+                include 'publicaciones.php';
                 break;
             case 'nueva-publicacion':
                 include 'nueva-publicacion.html';
@@ -68,20 +67,26 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'inicio';
             case 'login':
                 include 'login.html';
                 break;
+            case 'login-moderador':
+                include 'login-moderador.html';
+                break;
             case 'logout':
                 include 'logout.php';
                 break;
+            default:
+                include 'inicio.html'; // Página predeterminada si no se especifica ninguna
+                break;
         }
-
         ?>
     </main>
 
+    <!-- Pie de página -->
     <footer>
         <p>&copy; 2025 El Clan del Juego. Todos los derechos reservados.</p>
         <p>Síguenos en:
-            <a href="https://www.facebook.com">Facebook</a> |
-            <a href="https://x.com">Twitter/X</a> |
-            <a href="https://www.instagram.com">Instagram</a>
+            <a href="https://www.facebook.com" target="_blank">Facebook</a> |
+            <a href="https://x.com" target="_blank">Twitter/X</a> |
+            <a href="https://www.instagram.com" target="_blank">Instagram</a>
         </p>
     </footer>
 

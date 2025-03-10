@@ -1,41 +1,41 @@
 <?php
-// Iniciar la sesión
-session_start();
+// Incluir las validaciones
+include('validaciones.php');
 
-// Incluir el archivo de configuración para la conexión a la base de datos
+// Incluir la conexión a la base de datos
 include('config.php');
 
-// Verificar si el formulario ha sido enviado
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Obtener los valores del formulario
-    $nombre = $conn->real_escape_string($_POST['nombre']);
-    $email = $conn->real_escape_string($_POST['email']);
+    // Obtener los datos del formulario
+    $nombre = $_POST['nombre'];
+    $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Encriptar la contraseña antes de guardarla
-    $password_hash = password_hash($password, PASSWORD_DEFAULT);
-
-    // Verificar si el email ya está registrado
-    $sql_check_email = "SELECT * FROM moderadores WHERE email = '$email'";
-    $result = $conn->query($sql_check_email);
-
-    if ($result->num_rows > 0) {
-        echo "⚠️ El correo electrónico ya está registrado.";
+    // Validar los datos
+    $validacion = validarRegistroUsuario($nombre, $email, $password);
+    if ($validacion !== true) {
+        echo $validacion; // Muestra el error si la validación falla
     } else {
-        // Insertar el moderador en la base de datos
-        $sql = "INSERT INTO moderadores (nombre, email, password) VALUES ('$nombre', '$email', '$password_hash')";
+        // Si la validación pasa, encriptamos la contraseña
+        $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-        if ($conn->query($sql) === TRUE) {
-            echo "Registro exitoso de moderador.";
-            // Opcional: Redirigir a la página de inicio o de login
-            header("Location: index.php?page=login");
-            exit();
+        // Comprobar si el correo ya está registrado
+        $sql_check_email = "SELECT * FROM moderadores WHERE email = '$email'";
+        $result = $conn->query($sql_check_email);
+        if ($result->num_rows > 0) {
+            echo "⚠️ El correo electrónico ya está registrado.";
         } else {
-            echo "Error al registrar al moderador: " . $conn->error;
+            // Insertar el moderador en la base de datos
+            $sql = "INSERT INTO moderadores (nombre, email, password) VALUES ('$nombre', '$email', '$password_hash')";
+            if ($conn->query($sql) === TRUE) {
+                echo "Registro exitoso de moderador.";
+                header("Location: login-moderador.html"); // Redirigir al login después de registrar
+                exit();
+            } else {
+                echo "Error al registrar al moderador: " . $conn->error;
+            }
         }
     }
 }
 
-// Cerrar la conexión
 $conn->close();
-?>

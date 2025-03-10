@@ -1,38 +1,42 @@
 <?php
-// Incluir el archivo de configuración para la conexión a la base de datos
+// Incluir las validaciones
+include('validaciones.php');
+
+// Incluir la conexión a la base de datos
 include('config.php');
 
-// Verificar si los datos del formulario han sido enviados
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Obtener los valores del formulario
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    // Obtener los datos del formulario
     $nombre = $_POST['nombre'];
     $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Encriptar la contraseña
+    $password = $_POST['password'];
 
-    // Crear la consulta SQL para insertar los datos
-    $sql = "INSERT INTO usuarios (nombre, email, password) VALUES (?, ?, ?)";
-
-    // Preparar la sentencia SQL
-    if ($stmt = $conn->prepare($sql)) {
-        // Vincular los parámetros a la sentencia
-        $stmt->bind_param("sss", $nombre, $email, $password);
-
-        // Ejecutar la consulta
-        if ($stmt->execute()) {
-            // Si los datos se guardan correctamente, redirigir a la página de inicio
-            header("Location: index.php?page=inicio");
-            exit(); // Es importante detener la ejecución después de redirigir
-        } else {
-            echo "Error al guardar los datos: " . $stmt->error;
-        }
-
-        // Cerrar la sentencia
-        $stmt->close();
+    // Validar los datos
+    $validacion = validarRegistroUsuario($nombre, $email, $password);
+    if ($validacion !== true) {
+        echo $validacion; // Muestra el error si la validación falla
     } else {
-        echo "Error en la preparación de la consulta: " . $conn->error;
+        // Si la validación pasa, encriptamos la contraseña
+        $password_hash = password_hash($password, PASSWORD_DEFAULT);
+
+        // Comprobar si el correo ya está registrado
+        $sql_check_email = "SELECT * FROM usuarios WHERE email = '$email'";
+        $result = $conn->query($sql_check_email);
+        if ($result->num_rows > 0) {
+            echo "⚠️ El correo electrónico ya está registrado.";
+        } else {
+            // Insertar el usuario en la base de datos
+            $sql = "INSERT INTO usuarios (nombre, email, password) VALUES ('$nombre', '$email', '$password_hash')";
+            if ($conn->query($sql) === TRUE) {
+                echo "Registro exitoso.";
+                header("Location: login.php"); // Redirigir al login después de registrar
+                exit();
+            } else {
+                echo "Error al registrar al usuario: " . $conn->error;
+            }
+        }
     }
 }
 
-// Cerrar la conexión
 $conn->close();
 ?>
