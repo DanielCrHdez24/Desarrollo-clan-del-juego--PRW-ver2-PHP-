@@ -1,6 +1,6 @@
 <?php
 // Parámetros de la conexión
-$host = '127.0.0.1'; 
+$host = 'Localhost'; 
 $username = 'root';  
 $password = '';      
 $dbname = 'el_clan_del_juego'; // Nombre de la base de datos

@@ -235,3 +235,43 @@ footer p {
     font-weight: bold;
     color: #e74c3c;
 }
+#login {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#login h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+#login input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#login button {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#login button:hover {
+    background: #0056b3;
+}
+
+#login p {
+    margin-top: 10px;
+}

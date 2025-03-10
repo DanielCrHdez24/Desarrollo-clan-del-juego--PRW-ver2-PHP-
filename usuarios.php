@@ -19,7 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Ejecutar la consulta
         if ($stmt->execute()) {
-            echo "Datos guardados correctamente.";
+            // Si los datos se guardan correctamente, redirigir a la página de inicio
+            header("Location: index.php?page=inicio");
+            exit(); // Es importante detener la ejecución después de redirigir
         } else {
             echo "Error al guardar los datos: " . $stmt->error;
         }
