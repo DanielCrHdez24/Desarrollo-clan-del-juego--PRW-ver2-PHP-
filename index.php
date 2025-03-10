@@ -24,9 +24,20 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'inicio';
                 <li><a href="index.php?page=catalogo-venta">Nuestra Merch</a></li>
                 <li><a href="index.php?page=registro">Registrarse</a></li>
                 <li><a href="index.php?page=login">Iniciar Sesión</a></li>
+                <li><a href="index.php?page=logout">Cerrar Sesión</a></li>
             </ul>
         </nav>
     </header>
+    <?php
+        session_start(); // Inicia la sesión
+
+        // Verificar si el usuario está logueado
+        if (isset($_SESSION['usuario_nombre'])) {
+            echo "¡Bienvenido @".$_SESSION['usuario_nombre']."!";
+        } else {
+            echo "¡Bienvenido visitante! Inicia sesión o regístrate.";
+        }
+        ?>
 
     <main>
         <?php
@@ -53,6 +64,9 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'inicio';
             case 'login':
                 include 'login.html';
                 break;
+                case 'logout':
+                    include 'logout.php';
+                    break;
         }
 
         ?>
