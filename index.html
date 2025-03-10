@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Clan del Juego</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#" data-screen="inicio">Inicio</a></li>
+                <li><a href="#" data-screen="publicaciones">Publicaciones</a></li>
+                <li><a href="#" data-screen="crear-publicacion">Añadir Publicación</a></li>
+                <li><a href="#" data-screen="catalogo-venta">Nuestra Merch</a></li>
+                <li><a href="#" data-screen="registro-moderadores">Registrarse como Moderador</a></li>
+                <li><a href="#" data-screen="registro">Registrarse</a></li>
+                <li><a href="#" data-screen="login">Iniciar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Inicio -->
+        <section id="inicio" class="screen active">
+            <h1>El arte de jugar - ¡Comparte tu experiencia!</h1>
+            <button onclick="showScreen('publicaciones')">Accede a las publicaciones de otros miembros</button>
+            <p>La web número uno del gamer experto... y del no tanto XD...</p>
+        </section>
+
+        <!-- Ver Publicaciones -->
+        <section id="publicaciones" class="screen screen-blue">
+            <h1>Publicaciones</h1>
+            <div class="post">
+                <p>Hola a todos! Me gusta mucho jugar Mario aunque para muchos puede parecer algo aburrido...</p>
+                <span>Publicado por: @Jugador_22</span>
+            </div>
+            <div class="post">
+                <p>En GTA Vice City puedes encontrar un chaleco antibalas...</p>
+                <span>Publicado por: @Francisco11</span>
+            </div>
+        </section>
+
+        <!-- Crear Publicación -->
+        <section id="crear-publicacion" class="screen screen-blue">
+            <h1>Cuéntanos...</h1>
+            <form id="formPublicacion">
+                <textarea id="publicacion_contenido" name="publicacion_contenido"
+                    placeholder="Escribe aquí tu publicación..." required></textarea>
+                <button type="submit">Añadir Publicación</button>
+            </form>
+        </section>
+
+        <!-- Nuestra Merch -->
+        <section id="catalogo-venta" class="screen screen-blue">
+            <h1>¡Llévele, barato!</h1>
+            <div class="catalogo">
+                <div class="producto">
+                    <img src="https://github.com/DanielCrHdez24/Imagenes_desarrollos/blob/main/MockUps/Playera%202.png?raw=true"
+                        alt="Camiseta personalizada">
+                    <h2>Camiseta personalizada</h2>
+                    <p>Diseños únicos y exclusivos en varias tallas.</p>
+                    <span class="precio">$169.90</span>
+                </div>
+                <div class="producto">
+                    <img src="https://github.com/DanielCrHdez24/Imagenes_desarrollos/blob/main/MockUps/Taza%202.png?raw=true"
+                        alt="Taza con logo">
+                    <h2>Taza con logo</h2>
+                    <p>Cerámica de alta calidad con impresión duradera.</p>
+                    <span class="precio">$109.90</span>
+                </div>
+                <div class="producto">
+                    <img src="https://github.com/DanielCrHdez24/Imagenes_desarrollos/blob/main/MockUps/Gorra%202.png?raw=true"
+                        alt="Gorra bordada">
+                    <h2>Gorra bordada</h2>
+                    <p>Perfecta para cualquier ocasión, ajustable y cómoda.</p>
+                    <span class="precio">$149.90</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Registro de Usuarios -->
+        <section id="registro" class="screen">
+            <h1>¡Bienvenido!</h1>
+            <form id="formRegistroUsuario" action="usuarios.php" method="post">
+                <input type="text" id="nombre" name="nombre" placeholder="Nombre de Usuario" required>
+                <input type="email" id="email" name="email" placeholder="Tu correo electrónico"
+                    required>
+                <input type="password" id="password" name="password" placeholder="Crea tu contraseña"
+                    required>
+                <button type="submit">Crear Cuenta</button>
+            </form>
+        </section>
+
+        <!-- Registro de Moderadores -->
+        <section id="registro-moderadores" class="screen">
+            <h1>¡Bienvenido por una sana convivencia!</h1>
+            <form id="formRegistroModerador">
+                <input type="text" id="mod_nombre" name="mod_nombre" placeholder="Nombre de moderador" required>
+                <input type="email" id="mod_email" name="mod_email" placeholder="Tu correo electrónico" required>
+                <input type="password" id="mod_password" name="mod_password" placeholder="Crea tu contraseña" required>
+                <button type="submit">Crear Cuenta</button>
+            </form>
+        </section>
+
+        
+        <!-- Inicio de Sesión -->
+        <section id="login" class="screen">
+            <h1>¡Hola de nuevo!</h1>
+            <form id="formLogin">
+                <input type="text" id="login_usuario" name="login_usuario" placeholder="Nombre de Usuario" required>
+                <input type="password" id="login_password" name="login_password" placeholder="Tu contraseña" required>
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+        </section>
+    </main>
+
+    <div class="logo">
+        <img src="https://github.com/DanielCrHdez24/Imagenes_desarrollos/blob/main/MockUps/Logo.png?raw=true"
+            alt="GitHub Logo">
+    </div>
+
+    <!-- Píe de Página -->
+    <footer>
+        <p>&copy; 2025 El Clan del Juego. Todos los derechos reservados.</p>
+        <p>Síguenos en:
+            <a href="https://www.facebook.com">Facebook</a> |
+            <a href="https://x.com">Twitter/X</a> |
+            <a href="https://www.instagram.com">Instagram</a>
+        </p>
+    </footer>
+
+</body>
+
+</html>
