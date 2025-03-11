@@ -20,8 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (password_verify($password, $moderador['password'])) {
             $_SESSION['moderador_id'] = $moderador['id'];
             $_SESSION['moderador_nombre'] = $moderador['nombre'];
-            $_SESSION['es_moderador'] = true; // Definir que es moderador
-            header("Location: panel-moderador.php"); // Redirigir al panel de moderadores
+            $_SESSION['es_moderador'] = true; 
+            header("Location: panel-moderador.php"); 
             exit();
         } else {
             echo " Usted ingreso: Contraseña incorrecta.";

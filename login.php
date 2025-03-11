@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (password_verify($password, $usuario['password'])) {
             $_SESSION['usuario_id'] = $usuario['id'];
             $_SESSION['usuario_nombre'] = $usuario['nombre'];
-            header("Location: index.php"); // Redirigir a la página principal
+            header("Location: index.php"); 
             exit();
         } else {
             echo "Usted ha ingresado: Contraseña incorrecta.";

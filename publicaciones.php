@@ -2,6 +2,7 @@
 include('config.php');
 
 $sql = "SELECT usuario, contenido FROM publicaciones ORDER BY id DESC"; 
+$resultado = $conn->query($sql);
 ?>
 
 <div class="publicaciones-lista">

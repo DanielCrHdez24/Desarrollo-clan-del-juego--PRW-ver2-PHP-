@@ -1,5 +1,5 @@
 <?php
-//Este documento lo utilice de posterior consulta y decidi no eliminarlo del proyecto
+//Este documento lo utilice de consulta y decidi no eliminarlo del proyecto
 
 $host = 'localhost';
 $username = 'root';

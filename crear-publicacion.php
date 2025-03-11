@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST["publicacion_contenid
 
     $validacion = validarPublicacion($contenido);
     if ($validacion !== true) {
-        echo $validacion; // Muestra el error si la validación falla
+        echo $validacion; 
     } else {
         
         $sql = "INSERT INTO publicaciones (usuario, contenido) VALUES ('$usuario', '$contenido')";
@@ -35,6 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST["publicacion_contenid
     echo "No se recibió contenido para la publicación.";
 }
 
-// Cerrar la conexión
+
 $conn->close();
 ?>

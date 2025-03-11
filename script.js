@@ -15,6 +15,5 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Mostrar la pantalla "inicio" por defecto
     showScreen("inicio");
 });

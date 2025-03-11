@@ -13,7 +13,7 @@ function validarRegistroUsuario($nombre, $email, $password) {
         return "La contraseña debe tener al menos 6 caracteres.";
     }
 
-    return true; // Si todo está correcto
+    return true; 
 }
 
 function validarPublicacion($contenido) {

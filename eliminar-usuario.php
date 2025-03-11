@@ -27,5 +27,5 @@ if (isset($_GET['id'])) {
     echo "ID de usuario no proporcionado.";
 }
 
-$conn->close(); // Cerrar la conexión
+$conn->close(); 
 ?>

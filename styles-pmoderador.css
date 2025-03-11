@@ -92,7 +92,6 @@ a:hover {
     background-color: darkred;
 }
 
-/* Estilo para los botones en el panel */
 button {
     display: inline-block;
     padding: 10px 20px;
@@ -107,33 +106,4 @@ button {
 
 button:hover {
     background-color: #0056b3;
-}
-
-/* Responsividad */
-@media (max-width: 768px) {
-    .panel-container {
-        padding: 15px;
-    }
-
-    table {
-        font-size: 14px;
-    }
-
-    button {
-        width: 100%;
-        padding: 15px;
-    }
-}
-
-header {
-    background-color: red;
-    padding: 1rem 0;
-    text-align: center;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black;
 }
