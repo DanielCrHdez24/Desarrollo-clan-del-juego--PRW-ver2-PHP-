@@ -24,10 +24,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             header("Location: panel-moderador.php"); // Redirigir al panel de moderadores
             exit();
         } else {
-            echo "⚠️ Contraseña incorrecta.";
+            echo " Usted ingreso: Contraseña incorrecta.";
         }
     } else {
-        echo "⚠️ Moderador no encontrado.";
+        echo " Moderador no encontrado.";
     }
 
     $stmt->close();

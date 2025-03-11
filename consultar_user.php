@@ -1,4 +1,5 @@
 <?php
+//Este documento lo utilice para unas pruebas por cuestiones de posterior consulta decidi no eliminarlo del proyecto
 // Parámetros de la conexión
 $host = 'localhost'; 
 $username = 'root';  
@@ -31,7 +32,7 @@ if ($result->num_rows > 0) {
     echo "Usuario encontrado:<br>";
     echo "Nombre: " . $user['nombre'] . "<br>";
     echo "Correo: " . $user['email'] . "<br>";
-    echo "Contraseña: " . $user['password'] . "<br>"; // No recomendado mostrar la contraseña en producción
+    echo "Contraseña: " . $user['password'] . "<br>"; 
 } else {
     // Si el usuario no existe
     echo "No se encontró ningún usuario con el correo electrónico '$email'.";

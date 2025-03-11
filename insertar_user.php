@@ -1,9 +1,10 @@
 <?php
-// Parámetros de la conexión
+//Este documento lo utilice de posterior consulta y decidi no eliminarlo del proyecto
+
 $host = 'localhost';
 $username = 'root';
 $password = '';
-$dbname = 'el_clan_del_juego'; // Nombre de la base de datos
+$dbname = 'el_clan_del_juego'; 
 
 // Crear la conexión con manejo de excepciones
 try {
@@ -21,7 +22,7 @@ try {
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        // Encriptar la contraseña antes de guardarla (opcional pero recomendado)
+        // Encriptar la contraseña antes de guardarla 
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
         // Insertar los datos en la base de datos
@@ -46,6 +47,6 @@ try {
     die("Error: " . $e->getMessage());
 }
 
-// Cerrar la conexión cuando ya no la necesites
+// Cerrar la conexión 
 $conn->close();
 ?>

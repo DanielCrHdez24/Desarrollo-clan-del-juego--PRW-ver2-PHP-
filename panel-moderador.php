@@ -1,14 +1,14 @@
 <?php
-session_start(); // Inicia la sesión
-include('config.php'); // Conexión a la base de datos
+session_start(); 
+include('config.php'); 
 
 // Verificar si el moderador está logueado
 if (!isset($_SESSION['moderador_id']) || !isset($_SESSION['es_moderador']) || $_SESSION['es_moderador'] !== true) {
-    header("Location: login-moderador.php"); // Redirigir si no es moderador
+    header("Location: login-moderador.php"); 
     exit();
 }
 
-// Obtener la lista de usuarios (esto puede variar según lo que quieras hacer)
+// Obtiene la lista de usuarios
 $sql = "SELECT id, nombre, email FROM usuarios";
 $resultado = $conn->query($sql);
 ?>
@@ -46,7 +46,6 @@ $resultado = $conn->query($sql);
     </tbody>
 </table>
 
-<!-- Agregar enlace de logout -->
 <a href="logout.php">Cerrar sesión</a>
 
 <?php

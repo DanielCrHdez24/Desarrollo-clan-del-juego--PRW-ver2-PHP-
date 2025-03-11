@@ -4,7 +4,7 @@ include('config.php');
 
 // Verificar si el usuario es moderador antes de mostrar la página
 if (!isset($_SESSION['usuario_rol']) || $_SESSION['usuario_rol'] !== 'moderador') {
-    echo "Acceso denegado. Solo los moderadores pueden acceder a esta página.";
+    echo "¡¡¡Advertencia!!! solo los moderadores pueden acceder a esta página.";
     exit;
 }
 
@@ -28,7 +28,6 @@ $resultado = $conn->query($sql);
             <th>ID</th>
             <th>Nombre</th>
             <th>Email</th>
-            <th>Rol</th>
             <th>Acciones</th>
         </tr>
         <?php while ($usuario = $resultado->fetch_assoc()): ?>
@@ -36,7 +35,7 @@ $resultado = $conn->query($sql);
             <td><?php echo $usuario['id']; ?></td>
             <td><?php echo htmlspecialchars($usuario['nombre']); ?></td>
             <td><?php echo htmlspecialchars($usuario['email']); ?></td>
-            <td><?php echo htmlspecialchars($usuario['rol']); ?></td>
+
             <td>
                 <a href="editar-usuario.php?id=<?php echo $usuario['id']; ?>">Editar</a> |
                 <a href="eliminar-usuario.php?id=<?php echo $usuario['id']; ?>" onclick="return confirm('¿Seguro que quieres eliminar este usuario?');">Eliminar</a>

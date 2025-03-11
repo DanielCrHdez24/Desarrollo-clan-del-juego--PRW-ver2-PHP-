@@ -1,10 +1,7 @@
 <?php
-// Incluir el archivo de configuración para la conexión a la base de datos
 include('config.php');
 
-// Realizar la consulta para obtener las publicaciones de la base de datos
-$sql = "SELECT usuario, contenido FROM publicaciones ORDER BY id DESC"; // Puedes ajustar el orden si es necesario
-$resultado = $conn->query($sql);
+$sql = "SELECT usuario, contenido FROM publicaciones ORDER BY id DESC"; 
 ?>
 
 <div class="publicaciones-lista">
@@ -21,6 +18,6 @@ $resultado = $conn->query($sql);
 </div>
 
 <?php
-// Cerrar la conexión
+
 $conn->close();
 ?>

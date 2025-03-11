@@ -2,7 +2,6 @@
 // Inicia la sesión
 session_start();
 
-// Verifica qué página se está solicitando
 $page = isset($_GET['page']) ? $_GET['page'] : 'inicio';
 ?>
 
@@ -18,7 +17,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'inicio';
 
 <body>
 
-    <!-- Cabecera con navegación -->
+    <!-- Nav en Header -->
     <header>
         <nav>
             <ul>
@@ -37,14 +36,14 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'inicio';
 
     <main>
         <?php
-        // Verificar si el usuario está logueado
+        // Verifica logeo
         if (isset($_SESSION['usuario_nombre'])) {
             echo "¡Bienvenido @" . $_SESSION['usuario_nombre'] . "!";
         } else {
             echo "¡Bienvenido visitante! Inicia sesión o regístrate.";
         }
 
-        // Cargar el contenido de la página solicitada
+        // Mostramos la pantalla pasra cada situación
         switch ($page) {
             case 'inicio':
                 include 'inicio.html';
@@ -74,7 +73,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'inicio';
                 include 'logout.php';
                 break;
             default:
-                include 'inicio.html'; // Página predeterminada si no se especifica ninguna
+                include 'inicio.html'; // Página principal 
                 break;
         }
         ?>

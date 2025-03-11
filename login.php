@@ -1,6 +1,6 @@
 <?php
-session_start(); // Inicia la sesión
-include('config.php'); // Conexión a la base de datos
+session_start(); 
+include('config.php'); 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = $conn->real_escape_string($_POST['email']);
@@ -23,10 +23,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             header("Location: index.php"); // Redirigir a la página principal
             exit();
         } else {
-            echo "⚠️ Contraseña incorrecta.";
+            echo "Usted ha ingresado: Contraseña incorrecta.";
         }
     } else {
-        echo "⚠️ Usuario no encontrado.";
+        echo " Usuario no encontrado.";
     }
 
     $stmt->close();

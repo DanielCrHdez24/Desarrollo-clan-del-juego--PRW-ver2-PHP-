@@ -22,7 +22,7 @@ body {
 .panel-container h1 {
     font-size: 32px;
     margin-bottom: 20px;
-    color: #0a1af1; 
+    color: #0a1af1;
 }
 
 .panel-container p {
@@ -47,20 +47,21 @@ table {
     overflow: hidden;
 }
 
-th, td {
+th,
+td {
     padding: 12px;
     text-align: center;
     border: 1px solid #ddd;
 }
 
 th {
-    background-color: #0a1af1; 
+    background-color: #0a1af1;
     color: white;
     font-size: 18px;
 }
 
 tr:nth-child(even) {
-    background-color: #f2f2f2; 
+    background-color: #f2f2f2;
 }
 
 a {
@@ -124,7 +125,6 @@ button:hover {
     }
 }
 
-/* Fondo rojo para el encabezado */
 header {
     background-color: red;
     padding: 1rem 0;

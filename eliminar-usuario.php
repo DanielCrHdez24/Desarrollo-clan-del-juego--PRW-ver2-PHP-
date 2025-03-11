@@ -2,7 +2,7 @@
 session_start();
 include('config.php');
 
-// Verificar si el moderador está logueado
+
 if (!isset($_SESSION['moderador_id']) || !isset($_SESSION['es_moderador']) || $_SESSION['es_moderador'] !== true) {
     echo "Acceso denegado.";
     exit;
@@ -10,11 +10,10 @@ if (!isset($_SESSION['moderador_id']) || !isset($_SESSION['es_moderador']) || $_
 
 // Verificar que se recibió un ID válido
 if (isset($_GET['id'])) {
-    $id = intval($_GET['id']); // Convertir a entero para seguridad
+    $id = intval($_GET['id']); 
 
-    // Usar una consulta preparada para eliminar el usuario
     $stmt = $conn->prepare("DELETE FROM usuarios WHERE id = ?");
-    $stmt->bind_param("i", $id); // "i" indica que el parámetro es un entero
+    $stmt->bind_param("i", $id); 
 
     if ($stmt->execute()) {
         header("Location: admin-usuarios.php");
@@ -23,7 +22,7 @@ if (isset($_GET['id'])) {
         echo "Error al eliminar usuario: " . $stmt->error;
     }
 
-    $stmt->close(); // Cerrar la declaración
+    $stmt->close(); 
 } else {
     echo "ID de usuario no proporcionado.";
 }

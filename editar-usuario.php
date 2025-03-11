@@ -24,15 +24,14 @@ if (isset($_GET['id'])) {
     }
 }
 
-// Procesar el formulario de edición
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nombre = $conn->real_escape_string($_POST['nombre']);
     $email = $conn->real_escape_string($_POST['email']);
 
-    // Aquí está la corrección
-    $stmt = $conn->prepare("UPDATE usuarios SET nombre=?, email=? WHERE id=?");
-    $stmt->bind_param("ssi", $nombre, $email, $id); // Cambié "sssi" a "ssi"
     
+    $stmt = $conn->prepare("UPDATE usuarios SET nombre=?, email=? WHERE id=?");
+    $stmt->bind_param("ssi", $nombre, $email, $id); 
     if ($stmt->execute()) {
         header("Location: admin-usuarios.php");
         exit;
@@ -41,6 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
