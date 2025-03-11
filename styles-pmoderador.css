@@ -22,7 +22,7 @@ body {
 .panel-container h1 {
     font-size: 32px;
     margin-bottom: 20px;
-    color: #0a1af1; /* Azul vibrante para el título */
+    color: #0a1af1; 
 }
 
 .panel-container p {
@@ -54,13 +54,13 @@ th, td {
 }
 
 th {
-    background-color: #0a1af1; /* Azul para los encabezados */
+    background-color: #0a1af1; 
     color: white;
     font-size: 18px;
 }
 
 tr:nth-child(even) {
-    background-color: #f2f2f2; /* Fondo gris claro para filas pares */
+    background-color: #f2f2f2; 
 }
 
 a {
