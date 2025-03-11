@@ -2,17 +2,19 @@
 session_start();
 include('config.php');
 
-// Verificar si el usuario es moderador
-if (!isset($_SESSION['usuario_rol']) || $_SESSION['usuario_rol'] !== 'moderador') {
+// Verificar si el moderador está logueado
+if (!isset($_SESSION['moderador_id']) || !isset($_SESSION['es_moderador']) || $_SESSION['es_moderador'] !== true) {
     echo "Acceso denegado.";
     exit;
 }
 
 // Obtener datos del usuario a editar
 if (isset($_GET['id'])) {
-    $id = intval($_GET['id']); // Asegurar que es un número
-    $sql = "SELECT * FROM usuarios WHERE id = $id";
-    $resultado = $conn->query($sql);
+    $id = intval($_GET['id']);
+    $stmt = $conn->prepare("SELECT * FROM usuarios WHERE id = ?");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
     
     if ($resultado->num_rows > 0) {
         $usuario = $resultado->fetch_assoc();
@@ -26,11 +28,13 @@ if (isset($_GET['id'])) {
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $nombre = $conn->real_escape_string($_POST['nombre']);
     $email = $conn->real_escape_string($_POST['email']);
-    $rol = $conn->real_escape_string($_POST['rol']);
 
-    $sql = "UPDATE usuarios SET nombre='$nombre', email='$email', rol='$rol' WHERE id=$id";
-    if ($conn->query($sql) === TRUE) {
-        header("Location: admin_usuarios.php");
+    // Aquí está la corrección
+    $stmt = $conn->prepare("UPDATE usuarios SET nombre=?, email=? WHERE id=?");
+    $stmt->bind_param("ssi", $nombre, $email, $id); // Cambié "sssi" a "ssi"
+    
+    if ($stmt->execute()) {
+        header("Location: admin-usuarios.php");
         exit;
     } else {
         echo "Error al actualizar usuario: " . $conn->error;
@@ -52,12 +56,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         <label>Email:</label>
         <input type="email" name="email" value="<?php echo htmlspecialchars($usuario['email']); ?>" required><br>
-
-        <label>Rol:</label>
-        <select name="rol">
-            <option value="usuario" <?php echo ($usuario['rol'] === 'usuario') ? 'selected' : ''; ?>>Usuario</option>
-            <option value="moderador" <?php echo ($usuario['rol'] === 'moderador') ? 'selected' : ''; ?>>Moderador</option>
-        </select><br>
 
         <button type="submit">Actualizar</button>
     </form>

@@ -2,8 +2,8 @@
 session_start();
 include('config.php');
 
-// Verificar si el usuario es moderador
-if (!isset($_SESSION['usuario_rol']) || $_SESSION['usuario_rol'] !== 'moderador') {
+// Verificar si el moderador está logueado
+if (!isset($_SESSION['moderador_id']) || !isset($_SESSION['es_moderador']) || $_SESSION['es_moderador'] !== true) {
     echo "Acceso denegado.";
     exit;
 }
@@ -11,15 +11,22 @@ if (!isset($_SESSION['usuario_rol']) || $_SESSION['usuario_rol'] !== 'moderador'
 // Verificar que se recibió un ID válido
 if (isset($_GET['id'])) {
     $id = intval($_GET['id']); // Convertir a entero para seguridad
-    $sql = "DELETE FROM usuarios WHERE id = $id";
 
-    if ($conn->query($sql) === TRUE) {
-        header("Location: admin_usuarios.php");
+    // Usar una consulta preparada para eliminar el usuario
+    $stmt = $conn->prepare("DELETE FROM usuarios WHERE id = ?");
+    $stmt->bind_param("i", $id); // "i" indica que el parámetro es un entero
+
+    if ($stmt->execute()) {
+        header("Location: admin-usuarios.php");
         exit;
     } else {
-        echo "Error al eliminar usuario: " . $conn->error;
+        echo "Error al eliminar usuario: " . $stmt->error;
     }
+
+    $stmt->close(); // Cerrar la declaración
 } else {
     echo "ID de usuario no proporcionado.";
 }
+
+$conn->close(); // Cerrar la conexión
 ?>
