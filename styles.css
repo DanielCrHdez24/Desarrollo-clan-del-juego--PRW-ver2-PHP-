@@ -113,8 +113,6 @@ textarea {
     font-size: 1rem;
 }
 
-/* Pantallas Azules */
-
 .screen-blue {
     background-color: blue;
     color: white;
@@ -277,12 +275,12 @@ footer p {
 }
 /* CSS del Panel de Moderador */
 
-/* Estilos generales */
+
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Bangers', cursive;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5; /* Fondo gris claro */
+    background-color: #f5f5f5; 
     color: #333;
 }
 
@@ -294,13 +292,13 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     text-align: center;
-    background-color: #ffffff; /* Asegúrate de que el fondo del contenedor esté blanco */
+    background-color: #ffffff; 
 }
 
 .panel-container h1 {
     font-size: 32px;
     margin-bottom: 20px;
-    color: #0a1af1; /* Azul vibrante para el título */
+    color: #0a1af1; 
 }
 
 .panel-container p {
@@ -332,13 +330,13 @@ th, td {
 }
 
 th {
-    background-color: #0a1af1; /* Azul para los encabezados */
+    background-color: #0a1af1; 
     color: white;
     font-size: 18px;
 }
 
 tr:nth-child(even) {
-    background-color: #f2f2f2; /* Fondo gris claro para filas pares */
+    background-color: #f2f2f2; 
 }
 
 a {
